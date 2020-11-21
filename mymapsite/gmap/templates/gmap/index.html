@@ -83,7 +83,7 @@
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 
       }
-
+      
       function setMarker(customerJson) {
 
         for(var i = 0; i < customerJson.length; i++){
@@ -95,7 +95,33 @@
           var marker = new google.maps.Marker({
             position: {lat: Number(customerJson[i].lat), lng: Number(customerJson[i].lng)},
             map: map
+
           });
+          navigator.geolocation.getCurrentPosition()
+          var marker = new google.maps.Marker({
+            position: {lat: position.coords.latitude, lng: position.coords.longitude},
+            map: map,
+            animation: google.maps.Animation.DROP,
+            icon: {
+              fillColor: "#FF0000",                //塗り潰し色
+              fillOpacity: 0.8,                    //塗り潰し透過率
+              path: google.maps.SymbolPath.CIRCLE, //円を指定
+              scale: 16,                           //円のサイズ
+              strokeColor: "#FF0000",              //枠の色
+              strokeWeight: 1.0                    //枠の透過率
+            },
+
+          });
+          
+
+
+
+
+
+
+
+
+
 
           bindInfoWindow(marker, map, infowindow);
         }
@@ -107,7 +133,7 @@
         });
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=""&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=apikey&callback=initMap"
     async defer></script>
   </body>
 </html>
